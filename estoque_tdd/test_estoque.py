@@ -21,12 +21,16 @@ class TestEstoque(unittest.TestCase):
     def test_adiciona_produto_novo(self):
         self.estoque.adicionar_produto("Oleo Motul", 4)
         self.assertEqual(self.estoque.consultar_quantidade("Oleo Motul"), 4)
+    # GREEN: Criei a lógica básica que armazena o produto no dicionário.
+    # REFACTOR: Nada a refatorar por enquanto, bem simples.
 
     # RED: Adicionar um que já existe tem que somar no saldo.
     def test_adiciona_produto_existente_soma_as_quantidades(self):
         self.estoque.adicionar_produto("Filtro de Ar", 2)
         self.estoque.adicionar_produto("Filtro de Ar", 3)
         self.assertEqual(self.estoque.consultar_quantidade("Filtro de Ar"), 5)
+    # GREEN: Adicionei um IF que checa se o produto já existe e soma ao valor anterior.
+    # REFACTOR: Aproveitei a mesma lógica do teste anterior, bem direto.
 
     # RED: Passar valor negativo ou zero tem que levantar erro.
     def test_adiciona_qtd_negativa_ou_zero_da_erro(self):
@@ -45,20 +49,24 @@ class TestEstoque(unittest.TestCase):
         self.estoque.adicionar_produto("Pastilha de Freio", 10)
         self.estoque.remover_produto("Pastilha de Freio", 4)
         self.assertEqual(self.estoque.consultar_quantidade("Pastilha de Freio"), 6)
+    # GREEN: Implementei a subtração básica da quantidade.
+    # REFACTOR: Vamos deixar simples por enquanto.
 
     # RED: Tentar tirar mais do que tem no estoque.
     def test_remove_mais_do_que_tem_da_erro(self):
         self.estoque.adicionar_produto("Amortecedor", 2)
         with self.assertRaises(ValueError):
             self.estoque.remover_produto("Amortecedor", 5)
+    # GREEN: Adicionei a verificação se a quantidade a remover é maior do que tem no estoque.
+    # REFACTOR: A lógica tá clara e eficiente.
 
     # RED: Passar valor zero ou negativo pra remover.
     def test_remove_qtd_invalida_da_erro(self):
         self.estoque.adicionar_produto("Bateria", 1)
         with self.assertRaises(ValueError):
             self.estoque.remover_produto("Bateria", 0)
-    # GREEN: Feita a lógica de subtrair e checar os limites.
-    # REFACTOR: Reaproveitei a função _valida_qtd() e botei um `del` se a qtd zerar.
+    # GREEN: Reutilizei a função _valida_qtd() pra checar se a quantidade é válida.
+    # REFACTOR: Implementei também o `del` pra remover do dicionário quando a quantidade zerar.
 
     # ==========================================
     # 4. Listar Produtos
@@ -80,6 +88,8 @@ class TestEstoque(unittest.TestCase):
     # RED: Se o estoque estiver vazio, não pode dar pau, tem que vir None.
     def test_mais_estocado_vazio_retorna_none(self):
         self.assertIsNone(self.estoque.produto_mais_estocado())
+    # GREEN: Adicionei uma verificação `if not self._itens` pra retornar None quando tá vazio.
+    # REFACTOR: Proteção simples e efetiva pra não quebrar na função max().
 
     # RED: Checar se ele pega a chave com o maior valor certinho.
     def test_mais_estocado_retorna_o_maior(self):
@@ -87,7 +97,8 @@ class TestEstoque(unittest.TestCase):
         self.estoque.adicionar_produto("Parafuso de Roda", 15)
         self.estoque.adicionar_produto("Farol", 5)
         self.assertEqual(self.estoque.produto_mais_estocado(), "Parafuso de Roda")
-    # GREEN: Resolvido usando a função built-in max() do Python direto no dict.
+    # GREEN: Usei a função built-in max() do Python com key pra encontrar o produto com maior quantidade.
+    # REFACTOR: Solução elegante e pythônica, sem necessidade de loops manual.
 
 if __name__ == '__main__':
     unittest.main()

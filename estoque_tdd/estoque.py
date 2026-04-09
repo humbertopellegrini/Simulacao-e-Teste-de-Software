@@ -26,7 +26,7 @@ class Estoque:
         
         qtd_atual = self.consultar_quantidade(nome)
         if qtd > qtd_atual:
-            raise ValueError("Estoque insuficiente. Não tem como tirar mais do que tem.")
+            raise ValueError("Estoque insuficiente. Não é possível retirar de 0.")
             
         self._itens[nome] -= qtd
         
