@@ -9,7 +9,7 @@
 * **Endpoint de Autenticação:** https://api.escuelajs.co/api/v1/auth/login
 
 ## 2. Justificativa da escolha
-A Platzi Fake Store API foi escolhida porque oferece um ambiente de testes realista para simular um sistema em produção. O seu principal diferencial em relação a outras APIs públicas é a implementação de um fluxo de autenticação JWT de verdade (Bearer token) na rota de perfil, em vez de apenas retornar dados estáticos. Além disso, a rota de produtos permite realizar todas as operações de CRUD (Create, Read, Update e Delete) de forma totalmente funcional, o que permitiu criar a suíte de testes abordando 100% das exigências técnicas descritas na especificação da atividade.
+A Platzi Fake Store API foi escolhida porque oferece um ambiente de testes realista para simular um sistema em produção. O seu principal diferencial em relação a outras APIs públicas é a implementação de um fluxo de autenticação JWT de verdade (Bearer token) na rota de perfil, em vez de apenas retornar dados estáticos. Além disso, a rota de produtos permite realizar todas as operações de CRUD (Create, Read, Update e Delete) de forma totalmente funcional, o que permitiu criar o suíte de testes abordando 100% das exigências técnicas descritas na especificação da atividade.
 
 ## 3. Instruções de instalação
 Para instalar as dependências necessárias para a execução dos testes, utiliza o comando:
